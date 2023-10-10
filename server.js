@@ -13,6 +13,11 @@ const PORT = process.env.PORT
 //Webサーバ作成
 const app = express()
 
+// staticコンテンツの設定
+// Middlewareの利用
+// publicフォルダをWebルートとしてブラウザからアクセスできるようにする
+app.use(express.static(__dirname + '/public'))
+
 // ルーティング（URLマッピング）
 // トップページにGETリクエストされたとき処理
 // サーバを停止（ていし）: Ctrl + C
@@ -23,11 +28,11 @@ app.get('/', (req, res) => {
     console.log(req.query)
 
     // サーバーからのレスポンス
-    res.send('Hello!!!!')
+    res.send('トップページ')
 })
 
 app.get('/profile', (req, res) => {
-    res.send('Profile Page!')
+    res.send('プロフィールページ')
 })
 
 // サーバー待機（たいき） wait 
