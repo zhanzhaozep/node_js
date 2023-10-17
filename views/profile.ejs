@@ -6,6 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>プロフィール</h2>
+    <h1><%= title %></h1>
+    <div>
+        <dl>
+            <dt>Name</dt>
+            <dd><%= user.name %></dd>
+            <dt>Birth Place</dt>
+            <dd><%= user.birthplace %></dd>
+            <dt>Hobby</dt>
+            <!-- hobbyデータの繰り返し -->
+            <dd>
+                <% user.hobby.forEach((value) => { %>
+                    <%= value %>
+                <% }) %>
+            </dd>
+        </dl>
+    </div>
 </body>
 </html>

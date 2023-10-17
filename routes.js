@@ -10,20 +10,48 @@ router.get('/', (req, res) => {
     console.log(req.body)
     console.log(req.url)
     console.log(req.query)
-
-    res.send('トップページ')
+    // res.send('トップページ')
+    //views/index.ejsを表示
+    res.render('index')
 })
 
 router.get('/profile', (req, res) => {
-    res.send('プロフィールページ')
+    // res.send('プロフィールページ')
+    // TODO: データベースからユーザ情報を取得
+    var user = {
+        id: 1,
+        name: "YSE",
+        birthplace: "横浜",
+        hobby: ['旅行', 'グルメ', 'スポーツ'],
+    }
+    var data = {
+        title: 'プロフィール',
+        user: user,
+    }
+    // views/profile.ejs に dataを渡して表示
+    res.render('profile', data)
 })
 
-// 商品IDから商品取得(URLパラメータ)（「id」をプレースホルダー）
+// 商品一覧（しょうひんいちらん）
+router.get('/item/', (req, res) => {
+    //データをすべて取得
+    var data = { 
+        items: item.get() 
+    }
+    // views/item/index.ejs に dataを渡して表示
+    res.render('item/index', data)
+})
+
+
+// 商品詳細（しょうひんしょうさい）
 router.get('/item/:id', (req, res) => {
     const id = req.params.id
-    var selectItem = item.find(id)
-    var message = "商品名:" + selectItem.name
-    res.send(message)
+    // データを検索して用意
+    var data = { 
+        item: item.find(id) 
+    }
+    // views/item/detail.ejs に dataを渡して表示
+    res.render('item/detail', data)
 })
 
 // ログイン認証（POST）
