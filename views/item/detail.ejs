@@ -7,11 +7,15 @@
 </head>
 <body>
     <h1>Item detail</h1>
+    <% if (item) { %>
     <dl>
         <dt>Name</dt>
         <dd><%= item.name %></dd>
         <dt>Price</dt>
         <dd>\<%= item.price %></dd>
     </dl>
+    <% } else { %>
+        Item is not found...
+    <% } %>
 </body>
 </html>
