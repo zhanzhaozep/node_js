@@ -25,6 +25,9 @@ app.use(express.urlencoded({ extended: true }))
 // Routerの利用
 app.use(routes)
 
+//テンプレートエンジンをEJSで設定
+app.set('view engine', 'ejs')
+
 
 // サーバー待機（たいき） wait 
 app.listen(PORT, HOST, () => {
