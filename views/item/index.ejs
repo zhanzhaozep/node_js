@@ -14,14 +14,16 @@
             <th>Name</th>
             <th>Price</th>
         </tr>
-        <% items.forEach((value) => { %>
-        <tr>
-            <td>
-                <a href="/item/<%= value.id %>"><%= value.name %></a>
-            </td>
-            <td>150</td>
-        </tr>
-        <% }) %>
+        <% if (items) { %>
+            <% items.forEach((value) => { %>
+            <tr>
+                <td>
+                    <a href="/item/<%= value.id %>"><%= value.name %></a>
+                </td>
+                <td>150</td>
+            </tr>
+            <% }) %>
+        <% } %>
     </table>
 </body>
 

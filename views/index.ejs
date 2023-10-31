@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>Item list</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-        </tr>
-        <% if (items) { %>
-            <% items.forEach((value) => { %>
-            <tr>
-                <td>
-                    <a href="/item/<%= value.id %>"><%= value.name %></a>
-                </td>
-                <td>150</td>
-            </tr>
-            <% }) %>
-        <% } %>
-    </table>
-</body>
-
-</html>
+<h2>トップページ</h2>
+<p>Welcome!!!</p>
+<h3>お知らせ</h3>
+<ul>
+    <li>商品を入荷しました！</li>
+</ul>

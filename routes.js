@@ -1,73 +1,28 @@
 // Expressモジュール読み込み
 const express = require('express')
-// models/itemモジュール読み込み
-const item = require('./models/item')
 
 // Routerの利用
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    console.log(req.body)
-    console.log(req.url)
-    console.log(req.query)
-    // res.send('トップページ')
-    //views/index.ejsを表示
-    res.render('index')
-})
+// controllersモジュール読み込み
+const HomeController = require('./controllers/HomeController')
+const LoginController = require('./controllers/LoginController')
+const ItemController = require('./controllers/ItemController')
+const UserController = require('./controllers/UserController')
 
-router.get('/profile', (req, res) => {
-    // res.send('プロフィールページ')
-    // TODO: データベースからユーザ情報を取得
-    var user = {
-        id: 1,
-        name: "YSE",
-        birthplace: "横浜",
-        hobby: ['旅行', 'グルメ', 'スポーツ'],
-    }
-    var data = {
-        title: 'プロフィール',
-        user: user,
-    }
-    // views/profile.ejs に dataを渡して表示
-    res.render('profile', data)
-})
+// HomeController
+router.get('/', HomeController.index)
+router.get('/profile', HomeController.profile)
 
-// 商品一覧（しょうひんいちらん）
-router.get('/item/', (req, res) => {
-    //データをすべて取得
-    var data = { 
-        items: item.get() 
-    }
-    // views/item/index.ejs に dataを渡して表示
-    res.render('item/index', data)
-})
+// LoginController
+router.get('/login', LoginController.index)
+router.post('/auth', LoginController.auth)
 
+// ItemController
+router.get('/item/', ItemController.index)
+router.get('/item/:id', ItemController.detail)
 
-// 商品詳細（しょうひんしょうさい）
-router.get('/item/:id', (req, res) => {
-    const id = req.params.id
-    // データを検索して用意
-    var data = { 
-        item: item.find(id) 
-    }
-    // views/item/detail.ejs に dataを渡して表示
-    res.render('item/detail', data)
-})
-
-// ログイン認証（POST）
-router.post('/auth', (req, res) => {
-    var loginName = req.body.login_name
-    var password = req.body.password
-
-    var message = "ログインできませんでした"
-    if (loginName == process.env.LOGIN_NAME
-        && password == process.env.PASSWORD) {
-        message = "ログインできました"
-    }
-    console.log(loginName)
-    console.log(password)
-
-    res.send(message)
-})
+// UserController
+router.get('/user/', UserController.index)
 
 module.exports = router
