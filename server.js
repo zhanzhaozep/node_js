@@ -33,6 +33,14 @@ app.set('view engine', 'ejs');
 // Middlewareに登録
 app.use(layouts);
 
+//Express Sessionのミドルウェア追加
+const session = require('express-session')
+app.use(session({
+    secret: 'secret_key',
+    resave: false,
+    saveUninitalized: false,
+}))
+
 // Routerの利用
 app.use(routes)
 
